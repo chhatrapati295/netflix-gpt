@@ -3,11 +3,14 @@ import BG_IMAGE from "../assets/netflix-bg.jpg";
 import { FormValidation } from "../utils/Validate";
 const Login = () => {
   const [isSignUpForm, setIsSignUpForm] = useState(true);
+  const [validationMsg , setValidationMsg] = useState('')
   const email = useRef(null)
   const password = useRef(null)
+  const username = useRef(null)
 
-const handleBtnSubmit = (email  , password)=>{
-  const msg = FormValidation(email.current.value, password.current.value);
+const handleBtnSubmit = (email  , password  , username)=>{
+  const msg = FormValidation(email.current.value, password.current.value , username.current.value);
+  setValidationMsg(msg)
   console.log(msg);
   // console.log(email , password)
 }
@@ -28,6 +31,7 @@ const handleBtnSubmit = (email  , password)=>{
           <input
             type="text"
             placeholder="Full name"
+            ref={username}
             required
             className="px-4 bg-[#3d3e3f]  py-2 outline-none w-full rounded-md border-none"
           />
@@ -45,9 +49,10 @@ const handleBtnSubmit = (email  , password)=>{
           ref={password}
           placeholder="Password"
           required
-          className="px-4 mb-4 py-2 bg-[#3d3e3f] outline-none  rounded-md w-full border-none"
+          className="px-4 py-2 bg-[#3d3e3f] outline-none  rounded-md w-full border-none"
         />
-        <button onClick={()=>handleBtnSubmit(email,password)} className="p-2 outline-none bg-[#D9232E] hover:bg-[#e50914d4] transition-all rounded-md w-full border-none  font-medium">
+        <span className="text-[#D9232E] font-medium">{validationMsg}</span>
+        <button onClick={()=>handleBtnSubmit(email,password , username)} className="p-2 outline-none bg-[#D9232E] hover:bg-[#e50914d4] transition-all rounded-md w-full border-none  font-medium">
           {!isSignUpForm ? "Sign In" : "Sign Up"}
         </button>
         <span>

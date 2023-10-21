@@ -1,4 +1,5 @@
-export const FormValidation = (email , password)=>{
+export const FormValidation = (email , password , username)=>{
+    const validName = /(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/.test(username)
     const validEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)
     const validPassport = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/.test(password)
     if(!validEmail){
@@ -7,5 +8,8 @@ export const FormValidation = (email , password)=>{
     if(!validPassport){
         return 'You entered invalid password !'
     }
-    return 'Good to go'
+    if(!validName){
+        return 'You entered invalid name !'
+    }
+    return 'You really have a nice name👌'
 }
