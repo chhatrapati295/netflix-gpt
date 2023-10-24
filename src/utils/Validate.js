@@ -11,5 +11,5 @@ export const FormValidation = (email , password , username)=>{
     if(!validName){
         return 'You entered invalid name !'
     }
-    return 'You really have a nice name👌'
+    return null
 }
